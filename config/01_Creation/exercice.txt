@@ -1,0 +1,14 @@
+CONFIGURATION
+
+1. Sous Configuration, créer un nouveau mandat ou, pour passer au prochain
+   exercice, sélectionner le mandat "10_Actifs_Ex1_Caisse"
+
+2. Ajouter votre prénom (expl: Prénom / ECOLE)
+
+3. Sauvegarder
+
+4. Ouvrir le Grand-Livre, le bilan et comptes de résultat
+   Bien comprendre le éléments qui composent ces documents comptables
+
+5. Quitter cette fenêtre et commencer un nouveau mandat
+   (ou l'exercice du mandat "10_Actifs_Ex1_Caisse")

@@ -1,0 +1,28 @@
+SOLDES, EXTRAITS DE COMPTE, BILAN ET CLOTURE
+
+1. Définir les soldes initiaux (100 en Banque et au Capital)
+
+2. Enregistrer les opérations suivantes, liée au compte 1020 - Banque:
+   . transfert de 75.- sur le compte 1010 - Poste
+   . retrait de 25.- (déposé en Caisse)
+
+3. Enregistrer les opérations suivantes, liée au compte 1000 - Caisse:
+   . achat de livres pour 20.-
+   . revente des livres achetés pour 50.-
+
+4. Afficher le Grand-Livre, le bilan et le résultat et noter les informations suivantes:
+   . total des actifs et des passifs
+   . montant des fonds propres
+   . résultat de l'exercice
+
+5. Enregistrer l'opération de clôture, liée au compte 2900 - Résultat reporté:
+   . comme le résultat est positif, le montant est au crédit du compte...
+   . ne pas oublier la contrepartie, le compte 9400 - Résultat de l’exercice
+
+6. Établir à nouveau le bilan et le résultat.
+   . La situation est-elle maintenant équilibrée? Pourquoi?
+   . Le solde en banque est nul... Pour quelle raison?
+
+5. Sélectionner le mandat "10_Actifs_Ex5_Clients" sous Configuration
+
+6. Quitter cette fenêtre et réaliser l'exercice suivant

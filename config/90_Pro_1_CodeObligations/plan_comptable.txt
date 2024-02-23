@@ -1,0 +1,62 @@
+1000 - Caisse
+1010 - Postfinance
+1020 - Banque
+1060 - Titres
+1100 - Créances clients
+1140 - Autres créances
+1200 - Stocks
+1280 - Travaux en cours
+1300 - Charges payées d‘avance
+1350 - Produits à recevoir
+1400 - Immobilisations financières
+1480 - Participations
+1500 - Machines et appareils
+1510 - Mobilier et installations
+1520 - Infrastructure informatique
+1530 - Véhicules
+1540 - Outillages et appareils
+1600 - Immeubles d’exploitation
+1700 - Brevets
+1770 - Goodwill
+1800 - Capital non-libéré
+2000 - Dettes fournisseurs
+2030 - Acomptes de clients
+2100 - Dettes bancaires à court terme
+2200 - Autres dettes à court terme
+2300 - Charges à payer
+2350 - Produits encaissés d’avance
+2400 - Dettes bancaires à long terme
+2450 - Hypothèques
+2500 - Autres dettes à long terme
+2600 - Provisions
+2800 - Capital
+2900 - Réserves issues du capital
+2950 - Réserves issues du résultat
+2960 - Réserves facultatives
+2970 - Résultats reportés
+2980 - Privé
+3000 - Ventes de produits fabriqués
+3200 - Ventes de marchandises
+3400 - Ventes de prestations
+3700 - Prestations propres
+3800 - Déductions accordées sur les ventes
+3900 - Variation des stocks
+4000 - Matériel pour produits fabriqués
+4200 - Achats de marchandises
+4400 - Prestations de tiers
+4800 - Déductions obtenues sur les achats
+5000 - Charges de personnel
+6000 - Loyers
+6100 - Entretien et réparations
+6700 - Autres charges d'exploitation
+6800 - Amortissements des actifs
+6900 - Charges financières
+6950 - Produits financiers
+7000 - Charges hors exploitation
+7050 - Produits hors exploitation
+7500 - Produits des immeubles d’exploitation
+7550 - Charges des immeubles d’exploitation
+8000 - Charges exceptionnelles
+8050 - Produits exceptionnels
+8900 - Impôts
+9400 - Résultat de l’exercice

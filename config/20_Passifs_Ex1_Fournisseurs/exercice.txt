@@ -1,0 +1,24 @@
+Entreprise de vente au détail
+
+ 1. Achat d'ordinateurs pour un montant de 2'000.-. Nous payons au comptant.
+ 
+ 2. Retrait de 200.- au postomat.
+ 
+ 3. Nous transférons 2'200.- de notre compte postal sur notre compte bancaire.
+ 
+ 4. Nous remboursons 2'500.- sur notre dette hypothécaire par virement postal.
+ 
+ 5. Nous payons la facture déjà comptabilisée d'un fournisseur par virement
+    bancaire pour un montant de 12'500.-.
+ 
+ 6. Un client nous paye une facture déjà comptabilisée de 250.- au comptant.
+ 
+ 7. Nous vendons un bureau et une chaise pour un montant de 750.-, l'acheteur
+    nous paye par virement postal.
+ 
+ 8. Achat d'une voiture à crédit 18'000.-.
+ 
+ 9. En accord avec un fournisseur, nous payons une facture de 1'000.- en lui
+    livrant un ordinateur figurant dans nos comptes pour le même montant.
+ 
+10. Nous déposons 300.- en liquide sur notre compte bancaire.

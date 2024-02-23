@@ -1,0 +1,32 @@
+4200 - Achats de marchandise
+6900 - Amortissements
+6300 - Assurances
+6700 - Autres charges d’exploitation
+2200 - Autres dettes CT
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+6500 - Charges d'administration
+6200 - Charges de véhicules
+6400 - Charges d'énergie et déchets
+1100 - Créances clients
+3800 - Déductions accordées
+4800 - Déductions obtenues
+2400 - Dettes LT
+2000 - Dettes fournisseurs
+6100 - Entretien, réparations, remplacements
+1600 - Immeubles
+6000 - Loyers
+1500 - Machines
+6600 - Marketing et publicité
+1520 - Matériel informatique
+1510 - Mobilier
+1010 - Poste
+9400 - Résultat de l’exercice
+2900 - Résultats reportés
+5000 - Salaires
+1200 - Stocks
+3900 - Variation de stocks
+1530 - Véhicules
+3200 - Ventes de marchandises
+3400 - Ventes de prestations

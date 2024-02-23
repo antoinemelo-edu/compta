@@ -1,0 +1,11 @@
+4200 - Achat de marchandises
+6700 - Autres charges d’exploitation
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+1100 - Créances clients
+1510 - Mobilier
+1010 - Poste
+9400 - Résultat de l’exercice
+2900 - Résultat reporté
+3200 - Ventes

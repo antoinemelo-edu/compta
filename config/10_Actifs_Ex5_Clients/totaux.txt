@@ -1,0 +1,29 @@
+Traitille-titre: Bilan et comptes de résultat ex.5 en CHF'000
+Vide-titre: 0
+Liquidités: 10
+Créances clients: 11
+Autres actifs circulants: 12-13
+Traitille-1: -----------
+Actifs circulants: 10-13
+Actifs immobilisés: 14-19
+Traitille-2: -----------
+TOTAL DES ACTIFS: 1
+Doubletrait-1: ===========
+Dettes à court terme: 20-23
+Dettes à long terme: 24-27
+Traitille-3: -----------
+Fonds étrangers: 20-27
+Fonds propres: 28-29
+Traitille-4: -----------
+TOTAL DES PASSIFS: 2
+Doubletrait-2: ===========
+Passifs - Actifs: 1-2
+Vide-1: 0
+Ventes nettes: 3
+Achats de marchandises: 4
+Traitille-5: -----------
+Marge brute: 3-4
+Autres charges: 5-8
+Traitille-6: -----------
+Résultat net: 3-8
+Doubletrait-3: ===========

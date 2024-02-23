@@ -1,0 +1,21 @@
+SOLDES, EXTRAITS DE COMPTE ET BILAN
+
+1. Définir les soldes initiaux (100 en Banque et au Capital)
+
+2. Enregistrer les opérations suivantes, liée au compte 1020 - Banque:
+   . transfert de 50.- sur le compte 1010 - Poste
+   . retrait de 25.- (déposé en Caisse)
+
+3. Enregistrer les opérations suivantes, liée au compte 1000 - Caisse:
+   . achat de feuilles pour 20.-
+   . vente de deux photocopies à 50 cts / pièces
+
+4. Afficher le Grand-Livre et noter les soldes finaux
+
+5. Établir le bilan et le résultat.
+   . Le résultat est négatif... Pourquoi?
+   . Le total des actifs est différent du passif... Comment résoudre ce problème?
+
+5. Sélectionner le mandat "10_Actifs_Ex4_Liquidites" sous Configuration
+
+6. Quitter cette fenêtre et réaliser l'exercice suivant

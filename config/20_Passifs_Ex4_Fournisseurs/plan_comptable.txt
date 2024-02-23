@@ -1,0 +1,18 @@
+4200 - Achat de marchandises
+6700 - Autres charges d’exploitation
+2200 - Autres dettes à court terme
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+1100 - Créances clients
+2400 - Dettes à long terme
+2000 - Dettes fournisseurs
+1600 - Immeubles
+1500 - Machines
+1520 - Matériel informatique
+1510 - Mobilier
+1010 - Poste
+9400 - Résultat de l’exercice
+2900 - Résultat reporté
+1530 - Véhicules
+3200 - Ventes

@@ -1,0 +1,29 @@
+CRÉANCES CLIENT ET COMPTABILITÉ À DOUBLE ENTRÉE
+
+1. Définir les soldes initiaux (100 en Banque et au Capital)
+
+2. Journaliser les opérations suivantes:
+   . transfert de 65.- du compte bancaire à la poste
+   . retrait au bancomatde 25.-
+   . achat de livres destinés à la revente pour 20.-, payé en cash
+   . revente au comptant d'un livres pour 15.-
+   . vente à crédit (créance client) de livres pour 35.-
+
+3. Afficher le Grand-Livre, le bilan et le résultat et noter les informations
+   suivantes:
+   . total des actifs et des passifs
+   . montant des fonds propres
+   . résultat de l'exercice
+
+4. Journaliser l'opération de clôture:
+   . comme le résultat est positif, le montant est au crédit du compte
+     Résultat reporté
+   . et au débit du compte 9400 - Résultat de l’exercice
+
+5. Établir à nouveau le bilan et le résultat.
+   . La situation est-elle équilibrée?
+   . Le total des actifs et des passifs à augmenté... Pourquoi?
+
+6. Sélectionner le mandat "20_Passifs_Ex1_Fournisseurs" sous Configuration
+
+7. Quitter cette fenêtre et réaliser l'exercice suivant

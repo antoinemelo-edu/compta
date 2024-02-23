@@ -1,0 +1,16 @@
+4200 - Achats de marchandise
+6700 - Autres charges d’exploitation
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+1100 - Créances clients
+3800 - Déductions accordées
+4800 - Déductions obtenues
+2000 - Dettes fournisseurs
+1010 - Poste
+9400 - Résultat de l’exercice
+2900 - Résultats reportés
+1200 - Stocks
+3900 - Variation de stocks
+3200 - Ventes de marchandises
+3400 - Ventes de prestations

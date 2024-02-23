@@ -1,0 +1,6 @@
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+6700 - Charges
+1010 - Poste
+3000 - Ventes

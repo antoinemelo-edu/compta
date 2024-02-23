@@ -1,0 +1,19 @@
+SOLDES INITIAUX, EXTRAITS DE COMPTE ET BALANCES
+
+ 1. Bien étudier le plan comptable et définir les
+    soldes initiaux (100 en Caisse et au Capital)
+
+ 2. Enregistrer les même opérations qu'avant, liées au compte 1000 - Caisse,
+    mais, ne pas oublier, cette fois-ci, d'enregistrer une contrepartie...
+    . achat de dix stylos (Achats) pour 25.-, payé au comptant
+    . vente d'un livre (Ventes) pour 40.-, payé cash
+
+3. Afficher le Grand-Livre et noter les soldes finaux
+
+4. Établir le bilan et le résultat.
+   . L'achat est devenu une Charge. Comment?
+   . Les totaux du bilan sont-ils équilibrés? Pourquoi?
+
+5. Sélectionner le mandat "10_Actifs_Ex2_Poste" sous Configuration
+
+6. Quitter cette fenêtre et réaliser l'exercice suivant

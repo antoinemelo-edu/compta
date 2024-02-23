@@ -1,0 +1,23 @@
+Traitille-titre: Bilan et comptes de résultat ex.4 en CHF'000
+Vide-titre: 0
+Liquidités: 10
+Autres actifs circulants: 11-13
+Actifs immobilisés: 14-19
+Traitille-1: -----------
+TOTAL DES ACTIFS: 1
+Doubletrait-1: ===========
+Fonds étrangers: 20-27
+Capital: 28
+Résultat reporté: 29
+Traitille-2: -----------
+Fonds propres: 28-29
+Traitille-3: -----------
+TOTAL DES PASSIFS: 2
+Doubletrait-2: ===========
+Passifs - Actifs: 1-2
+Vide-1: 0
+Ventes: 3-4
+Charges: 5-8
+Traitille-4: -----------
+Résultat de l'exercice: 3-8
+Doubletrait-3: ===========

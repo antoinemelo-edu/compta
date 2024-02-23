@@ -1,0 +1,9 @@
+4200 - Achat de livres
+1020 - Banque
+1000 - Caisse
+2800 - Capital
+1510 - Mobilier
+1010 - Poste
+9400 - Résultat de l’exercice
+2900 - Résultat reporté
+3200 - Ventes

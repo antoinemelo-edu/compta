@@ -1,0 +1,4 @@
+1100 - Autres actifs
+1000 - Caisse
+2800 - Capital
+2000 - Fonds étrangers

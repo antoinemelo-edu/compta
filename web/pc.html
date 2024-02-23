@@ -1,0 +1,46 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Récupérer les paramètres depuis le formulaire
+    $mandat = $_POST['mandat'];
+    $user = $_POST['user'];
+    $transac = $_POST['transac'];
+    $contenu = $_POST['contenu'];
+
+    // Chemin vers le fichier plan comptable.txt basé sur le mandat
+    $cheminFichier = "./" . $user . "/" . $mandat . "/plancomptable.txt";
+
+    // Sauvegarder le contenu dans le fichier
+    file_put_contents($cheminFichier, $contenu);
+
+    // Rediriger vers la page précédente
+    header("Location: etape2.html?mandat=" . urlencode($mandat) . "&user=" . urlencode($user) . "&transac=" . urlencode($transac));
+    exit;
+}
+
+// Récupérer les paramètres depuis l'URL
+$mandat = $_GET['mandat'] ?? '';
+$user = $_GET['user'] ?? '';
+$transac = $_GET['transac'] ?? '';
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Plan comptable</title>
+    <style>
+        textarea {
+            font-family: 'Courier New', monospace; /* Définit la police pour les zones de texte */
+        }
+    </style>
+</head>
+<body>
+    <h3>Le fichier du plan comptable n'existe pas<br>pour le mandat <?php echo htmlspecialchars($mandat); ?>...</h3>
+    <form method="post">
+        <textarea name="contenu" rows="25" cols="50"></textarea><br>
+        <input type="hidden" name="mandat" value="<?php echo htmlspecialchars($mandat); ?>">
+        <input type="hidden" name="user" value="<?php echo htmlspecialchars($user); ?>">
+        <input type="hidden" name="transac" value="<?php echo htmlspecialchars($transac); ?>">
+        <input type="submit" value="Sauvegarder">
+    </form>
+</body>
+</html>

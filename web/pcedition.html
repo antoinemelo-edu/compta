@@ -1,0 +1,76 @@
+<?php
+// Vérifier si le chemin du fichier plan comptable est passé en paramètre
+if (isset($_GET['fichierPlan'])) {
+    $fichierPlan = $_GET['fichierPlan'];
+    $user = $_GET['user'];
+    $mandat = $_GET['mandat'];
+
+    // Sécurité : Nettoyer le chemin pour éviter les attaques par manipulation de chemin
+    $fichierPlan = basename($fichierPlan);
+
+    // Complétez cette partie avec votre logique pour définir $cheminMandat
+    $cheminMandat = $user."/".$mandat;
+    $fichierPlan = $cheminMandat . "/" . $fichierPlan;
+		
+    // Traiter la soumission du formulaire
+    if (isset($_POST['submit'])) {
+        if (isset($_POST['contenu'])) {
+            file_put_contents($fichierPlan, $_POST['contenu']);
+			header("Location: etape1.html?user=" . urlencode($user) . "&mandat=" . urlencode($mandat));
+			exit;
+        } else {
+            echo "<p>Erreur : Aucun contenu soumis.</p>";
+        }
+    }
+
+    // Lire le contenu actuel du fichier
+    $contenuActuel = '';
+    if (file_exists($fichierPlan)) {
+        $contenuActuel = file_get_contents($fichierPlan);
+    }
+} else {
+    die("Erreur : Aucun chemin de fichier spécifié.");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier plan Comptable</title>
+    <style>
+        body {
+            font-size: 16px; /* Taille de police par défaut pour les écrans plus grands */
+        }
+		.input-large {
+			padding: 5px;
+		}
+		.submit-large {
+			font-size: 1.2em;
+			padding: 5px;
+		}
+        @media (max-width: 1180px) {
+            body {
+                font-size: 36px; /* Augmenter la taille de la police sur les petits écrans */
+            }
+			.input-large {
+				width: 700px;
+				height: 400px;
+				font-size: 0.8em;
+				padding: 5px;
+			}
+			.submit-large {
+				font-size: 1.2em;
+				padding: 5px;
+			}
+        }
+    </style>
+</head>
+<body>
+    <h3>Il est ici possible de moddifier le plan comptable du<br>mandat <?php echo htmlspecialchars($mandat); ?></h3>
+    <form action="" method="post">
+        <textarea name="contenu" rows="10" cols="50" class="input-large"><?php echo htmlspecialchars($contenuActuel); ?></textarea><br>
+        <input type="submit" name="submit" value="Enregistrer" class="submit-large">
+    </form>
+</body>
+</html>

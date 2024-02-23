@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Etape 0</title>
+    <style>
+        body {
+            font-size: 12px; /* Taille de police par défaut pour les écrans plus grands */
+        }
+        /* Modifier la taille du placeholder */
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            font-size: 1.5em; /* Taille du placeholder */
+            color: #999; /* Couleur du placeholder */
+            opacity: 1; /* Firefox */
+        }
+        
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            font-size: 1.5em;
+            color: #999;
+        }
+        
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            font-size: 1.5em;
+            color: #999;
+        }
+		.input-large {
+			width: 300px;
+			height: 30px;
+			font-size: 1.2em;
+			padding: 5px;
+		}
+        /* Modifier la taille de police du bouton submit */
+        button {
+            font-size: 1.5em; /* Taille de police plus grande pour le bouton */
+            padding: 10px 20px; /* Ajuster le padding si nécessaire */
+        }
+        @media (max-width: 1180px) {
+            body {
+                font-size: 18px; /* Augmenter la taille de la police sur les petits écrans */
+            }
+            button {
+                font-size: 36px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+                padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+                margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="userForm">
+        <input type="text" id="username" name="user" placeholder="Nom d'utilisateur" required class="input-large">
+        <button type="submit">Soumettre</button>
+    </form>
+    <div id="largeurEcran">Chargement...</div>
+    <script>
+        document.getElementById('userForm').onsubmit = function(event) {
+            event.preventDefault(); // Empêche le formulaire de soumettre de manière traditionnelle
+            var username = document.getElementById('username').value;
+            var usernameSansEspacesEtSpeciaux = username.replace(/[\s\W]/g, '');
+            window.location.href = 'intro.html?user=' + encodeURIComponent(usernameSansEspacesEtSpeciaux);
+        };
+        function afficherLargeur() {
+            var largeur = window.innerWidth;
+            document.getElementById('largeurEcran').textContent = 'La largeur de la fenêtre est de ' + largeur + ' pixels';
+        }
+        window.onload = afficherLargeur;
+        window.onresize = afficherLargeur;
+    </script>
+</body>
+</html>

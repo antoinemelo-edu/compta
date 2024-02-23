@@ -1,0 +1,6 @@
+6700 - Achats de stylos
+1100 - Autres actifs
+1000 - Caisse
+2800 - Capital
+2000 - Fonds étrangers
+3000 - Ventes

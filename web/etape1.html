@@ -1,0 +1,120 @@
+<?php
+// Récupérer les paramètres depuis l'URL. Utiliser un filtre pour la sécurité.
+$user = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
+$mandat = filter_input(INPUT_GET, 'mandat', FILTER_SANITIZE_SPECIAL_CHARS);
+$msg = filter_input(INPUT_GET, 'record', FILTER_SANITIZE_SPECIAL_CHARS);
+
+$chemin = './' . $user . '/';
+if (!is_dir($chemin)) {
+    header("Location: confirmation.html?user=" . urlencode($user) . "&mandat=" . urlencode($mandat));
+    exit;
+}
+$cheminMandat = './' . $user . '/' . $mandat . '/';
+if (!is_dir($cheminMandat)) {
+    header("Location: confirmation.html?user=" . urlencode($user) . "&mandat=" . urlencode($mandat) . "&util=ok");
+    exit;
+}
+$dossiers = array_filter(glob($chemin . '*'), 'is_dir');
+// Éliminer le répertoire correspondant au mandat, si spécifié et existant
+if ($mandat) {
+    $cheminMandat = $chemin . $mandat;
+    if (is_dir($cheminMandat)) {
+        $dossiers = array_filter($dossiers, function($dossier) use ($cheminMandat) {
+            return $dossier !== $cheminMandat;
+        });
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Etape 1</title>
+    <style>
+        .message-success {
+            color: green;
+        }
+        a {
+            text-decoration: none; /* Enlever le soulignement des liens */
+        }
+        li {
+            font-family: 'Courier New', monospace; /* Utiliser Courier New pour les éléments de liste */
+        }
+        body {
+            font-size: 16px; /* Taille de police par défaut pour les écrans plus grands */
+        }
+        
+        /* Requête média pour les appareils avec une largeur d'écran jusqu'à 600px */
+        button {
+			font-size: 24px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+			padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+			margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+		}
+        @media (max-width: 1180px) {
+            body {
+                font-size: 36px; /* Augmenter la taille de la police sur les petits écrans */
+            }
+            button {
+                font-size: 36px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+                padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+                margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+            }
+        }
+    </style>
+</head>
+<body>
+	<?php if (!empty($msg)){ ?>
+		<h3 class="message-success">Transaction enregistrée :)</h3>
+		<h3>Pour la prochaine?</h3>
+	<?php } else { ?>
+		<h3>Achat ou vente?</h3>
+	<?php } ?>
+    <!-- Boutons pour les transactions -->
+    <a href="etape2.html?user=<?php echo urlencode($user); ?>&mandat=<?php echo urlencode($mandat); ?>&transac=achat">
+        <button>Achat</button>
+    </a>
+    <a href="etape2.html?user=<?php echo urlencode($user); ?>&mandat=<?php echo urlencode($mandat); ?>&transac=vente">
+        <button>Vente</button>
+    </a>
+	<?php
+		$fichierTransactions = $cheminMandat."/transactions.txt";
+		if (file_exists($fichierTransactions)) {
+			echo "<hr><h3>Édition:</h3><ul>";
+			echo "<li><a href='transacedition.html?user=" . htmlspecialchars($user) . "&mandat=" .htmlspecialchars($mandat). "&fichierTransac=transactions.txt'>Transactions</a>";
+			$fichierPlan = $cheminMandat."/plancomptable.txt";
+			if (file_exists($fichierPlan)) {
+				echo "<li><a href='pcedition.html?user=" . htmlspecialchars($user) . "&mandat=" .htmlspecialchars($mandat). "&fichierPlan=plancomptable.txt'>Plan comptable</a>";
+			}
+			echo "</ul>";
+		}
+	?>
+
+    <!-- Liste des sous-répertoires, en excluant le mandat spécifié -->
+	<?php if (!empty($dossiers)): ?>
+		<hr>
+		<h3>Autres mandats:</h3>
+		<ul>
+		<?php foreach ($dossiers as $dossier): ?>
+			<li>
+				<?php 
+				$nomDossier = basename($dossier);
+				$urlMandat = htmlspecialchars($_SERVER['PHP_SELF']) . "?user=" . urlencode($user) . "&mandat=" . urlencode($nomDossier);
+				?>
+				<?php echo $nomDossier; ?> <a href="<?php echo $urlMandat; ?>">--></a>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>
+    </ul>
+    <?php if ($user): ?>
+        <p>Utilisateur: <?php echo $user; ?>, 
+    <?php else: ?>
+        <p>Utilisateur anonyme, 
+    <?php endif; ?>
+    <?php if ($mandat): ?>
+        mandat actif: <?php echo $mandat; ?></p>
+    <?php else: ?>
+        mandat inconnu</p>
+    <?php endif; ?>
+</body>
+</html>

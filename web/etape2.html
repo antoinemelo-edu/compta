@@ -1,0 +1,92 @@
+<?php
+// Récupérer les paramètres depuis l'URL
+$user = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
+$mandat = filter_input(INPUT_GET, 'mandat', FILTER_SANITIZE_SPECIAL_CHARS);
+$transac = filter_input(INPUT_GET, 'transac', FILTER_SANITIZE_SPECIAL_CHARS);
+
+// Chemin vers le fichier plan comptable.txt basé sur le mandat
+$cheminFichier = "./" . $user . "/" . $mandat . "/plancomptable.txt";
+
+if (!file_exists($cheminFichier)) {
+    // Rediriger vers la page de création du fichier
+    header("Location: pc.html?mandat=" . urlencode($mandat) . "&user=" . urlencode($user) . "&transac=" . urlencode($transac));
+    exit;
+}
+
+$comptes = [];
+
+// Lire le fichier si existant
+if (file_exists($cheminFichier)) {
+    $lignes = file($cheminFichier, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lignes as $ligne) {
+        list($id, $nom) = explode(' - ', $ligne);
+        $comptes[$id] = $nom;
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction</title>
+    <style>
+        .message-success {
+            color: green;
+        }
+        a {
+            text-decoration: none; /* Enlever le soulignement des liens */
+        }
+        li {
+            font-family: 'Courier New', monospace; /* Utiliser Courier New pour les éléments de liste */
+        }
+        body {
+            font-size: 16px; /* Taille de police par défaut pour les écrans plus grands */
+        }
+        
+        /* Requête média pour les appareils avec une largeur d'écran jusqu'à 600px */
+        button {
+			font-size: 24px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+			padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+			margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+		}
+        @media (max-width: 1180px) {
+            body {
+                font-size: 36px; /* Augmenter la taille de la police sur les petits écrans */
+            }
+            button {
+                font-size: 36px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+                padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+                margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+            }
+        }
+    </style>
+</head>
+<body>
+    <?php
+    	$texthtml = $transac == "achat" ? "cet achat" : "cette vente";
+    ?>
+    <h3>Compte utilisé pour <?php echo $texthtml; ?>:</h3>
+    <?php
+		// Afficher des boutons pour les comptes selon le type de transaction
+		foreach ($comptes as $id => $nom) {
+		    $debutId = substr($id, 0, 2);
+		    $paramSupplementaire = $transac == "achat" ? "credit=$id" : "debit=$id";
+		    $urlNouvellePage = "etape3.html?user=" . urlencode($user) . "&mandat=" . urlencode($mandat) . "&transac=" . urlencode($transac) . "&$paramSupplementaire";
+		    if (($transac == "achat" && in_array($debutId, ["10", "20", "21"])) || ($transac == "vente" && in_array($debutId, ["10", "11"]))) {
+		        echo "<a href='$urlNouvellePage'><button>$nom</button></a><br>";
+		    }
+		}
+    ?>
+    <hr>
+    <?php if ($user): ?>
+        <p>Utilisateur: <?php echo $user; ?>, 
+    <?php else: ?>
+        <p>Utilisateur anonyme, 
+    <?php endif; ?>
+    <?php if ($mandat): ?>
+        mandat actif: <?php echo $mandat; ?></p>
+    <?php else: ?>
+        mandat inconnu</p>
+    <?php endif; ?>
+</body>
+</html>

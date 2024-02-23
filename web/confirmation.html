@@ -1,0 +1,54 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['confirmer'])) {
+        $user = $_POST['user'];
+        $mandat = $_POST['mandat'];
+        $chemin = './' . $user . '/' . $mandat . '/';
+
+        mkdir($chemin, 0755, true);
+        //mkdir($chemin . '01_Creation', 0755, true);
+
+        header("Location: etape1.html?user=" . urlencode($user) . "&mandat=" . urlencode($mandat));
+        exit;
+    } elseif (isset($_POST['annuler'])) {
+        $user = $_POST['user'];
+        // Rediriger si l'utilisateur annule l'action
+        header("Location: intro.html?user=" . urlencode($user));
+        exit;
+    }
+}
+
+// Récupérer les paramètres 'user' et 'mandat' depuis l'URL si la méthode est GET
+$user = $_GET['user'] ?? '';
+$mandat = $_GET['mandat'] ?? '';
+$util = $_GET['util'] ?? '';
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dossier</title>
+</head>
+<body>
+	<?php
+		if ($util == "ok") {
+	?>
+			<p>Le mandat <?php echo htmlspecialchars($mandat); ?> n'existe pas.<br>
+			Voulez-vous le créer?</p>
+	<?php
+		} else {
+	?>
+			<p>Le répertoire de l'utilisateur <?php echo htmlspecialchars($user); ?> n'existe pas.<br>
+			Voulez-vous créer ce répertoire ainsi que le mandat <?php echo htmlspecialchars($mandat); ?>?</p>
+	<?php
+		}
+	?>
+    <form method="post">
+        <input type="hidden" name="user" value="<?php echo htmlspecialchars($user); ?>">
+        <input type="hidden" name="mandat" value="<?php echo htmlspecialchars($mandat); ?>">
+        <input type="submit" name="confirmer" value="Confirmer">
+        <input type="submit" name="annuler" value="Annuler">
+    </form>
+</body>
+</html>

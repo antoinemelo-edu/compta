@@ -1,0 +1,210 @@
+<?php
+// Récupérer les paramètres depuis l'URL
+$user = filter_input(INPUT_GET, 'user', FILTER_SANITIZE_SPECIAL_CHARS);
+$mandat = filter_input(INPUT_GET, 'mandat', FILTER_SANITIZE_SPECIAL_CHARS);
+$transac = filter_input(INPUT_GET, 'transac', FILTER_SANITIZE_SPECIAL_CHARS);
+$debit = filter_input(INPUT_GET, 'debit', FILTER_SANITIZE_SPECIAL_CHARS);
+$credit = filter_input(INPUT_GET, 'credit', FILTER_SANITIZE_SPECIAL_CHARS);
+
+// Chemin vers le fichier plan comptable.txt basé sur le mandat
+$cheminFichier = "./" . $user . "/" . $mandat . "/plancomptable.txt";
+
+$comptes = [];
+
+// Lire le fichier si existant
+if (file_exists($cheminFichier)) {
+    $lignes = file($cheminFichier, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lignes as $ligne) {
+        list($id, $nom) = explode(' - ', $ligne);
+        $comptes[$id] = $nom;
+    }
+}
+
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Contrepartie</title>
+    <style>
+        .message-success {
+            color: green;
+        }
+        a {
+            text-decoration: none; /* Enlever le soulignement des liens */
+            font-family: Courier New
+        }
+        li {
+            font-family: 'Courier New', monospace; /* Utiliser Courier New pour les éléments de liste */
+        }
+        body {
+            font-size: 16px; /* Taille de police par défaut pour les écrans plus grands */
+        }
+        
+        /* Requête média pour les appareils avec une largeur d'écran jusqu'à 600px */
+        button {
+			font-size: 20px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+			padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+			margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+		}
+        /* Modifier la taille du placeholder */
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            font-size: 1.5em; /* Taille du placeholder */
+            color: #999; /* Couleur du placeholder */
+            opacity: 1; /* Firefox */
+        }
+        
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+            font-size: 1.5em;
+            color: #999;
+        }
+        
+        ::-ms-input-placeholder { /* Microsoft Edge */
+            font-size: 1.5em;
+            color: #999;
+        }
+		.input-large {
+			width: 300px;
+			height: 30px;
+			padding: 5px;
+		}
+        @media (max-width: 1180px) {
+            body {
+                font-size: 36px; /* Augmenter la taille de la police sur les petits écrans */
+            }
+            button {
+                font-size: 36px; /* Augmenter la taille de la police des boutons pour une meilleure accessibilité */
+                padding: 10px; /* Ajouter un peu plus d'espace autour du texte dans les boutons */
+                margin-bottom: 10px; /* Ajuster l'espacement entre les boutons */
+            }
+			.input-large {
+				width: 700px;
+				height: 60px;
+				font-size: 0.8em;
+				padding: 5px;
+			}
+        }
+    </style>
+</head>
+<body>
+    <?php
+    	$texthtml = $transac == "achat" ? "Pour cet achat" : "Pour cette vente";
+    	// Afficher si le compte a été débité ou crédité
+    	if (!empty($debit)) {
+    		echo "<p>$texthtml (mandat $mandat),<br>le compte $debit - $comptes[$debit] est au débit.</p>";
+    		$texthtml = "crédit";
+    	} elseif (!empty($credit)) {
+    	    echo "<p>$texthtml (mandat $mandat),<br>le compte $credit - $comptes[$credit] est au crédit.</p>";
+    		$texthtml = "débit";
+    	}
+    	echo "<hr>";
+		$comptesAffiche = 0;
+		foreach ($comptes as $id => $nom) {
+			$debutId = substr($id, 0, 1);
+			$debutComplet = substr($id, 0, 2);
+			if (($debutComplet >= "14" && $debutId == "1") || ($transac == "vente" && $debutId == "3") || ($transac == "achat" && in_array($debutId, ["4", "5", "6", "7", "8"]))) {
+				$comptesAffiche = 1;
+			}
+		}
+		if ($comptesAffiche == 0) {
+			echo "<p style='font-family: \"Courier New\", monospace;'>Revenir à la 1e étape <a href='etape1.html?user=$user&mandat=$mandat'>--></a href></p>";
+			echo "<p style='color: red;'>Aucune contrepartie n'est disponible dans le plan comptable pour cette transaction: l'exercice s'arrête donc ici ;)</p>";
+		} else {
+			?>
+				<form id="transactionForm">
+					<input type="text" id="montant" name="montant" placeholder="Montant" required class="input-large"><br>
+					<input type="text" id="commentaire" name="commentaire" placeholder="Commentaire éventuel" class="input-large"><br>
+				</form>
+			<?php
+			$texthtml = strlen($debit) > 0 ? "crédit" : "débit";
+			$qhtml = $transac == "achat" ? "Acheté quoi?" : "Vendu quoi?";
+			echo "<h3>$qhtml<br><small>(contrepartie au ". $texthtml . ")</small></h3>";
+			// Afficher les comptes selon les critères spécifiés
+			$elements = [];
+			foreach ($comptes as $id => $nom) {
+				$debutId = substr($id, 0, 1);
+				$debutComplet = substr($id, 0, 2);
+				$nomModifie = $nom;
+				
+				if ($nom == "Ventes" || $nom == "Vente") {
+					$nomModifie = "Enregistrer simplement la vente";
+				} elseif ($nom == "Achats" || $nom == "Achat") {
+					$nomModifie = "Enregistrer simplement l'achat";
+				}
+
+				// Ajouter à $elements si les conditions sont remplies
+				if (($debutComplet >= "14" && $debutId == "1") || 
+					($transac == "vente" && $debutId == "3") || 
+					($transac == "achat" && in_array($debutId, ["4", "5", "6", "7", "8"]))) {
+					$elements[] = ['id' => $id, 'nomModifie' => $nomModifie];
+				}
+			}
+			// Tri par ordre alphabétique de nomModifie
+			usort($elements, function($a, $b) {
+				return strcmp($a['nomModifie'], $b['nomModifie']);
+			});
+			// Parcourir et afficher les boutons pour les éléments triés
+			foreach ($elements as $element) {
+				echo "<button onclick=\"soumettreTransaction('{$element['id']}')\">{$element['nomModifie']}</button><br>";
+			}
+		}
+    ?>
+	<script>
+		function getFormattedDate() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = ('0' + (now.getMonth() + 1)).slice(-2); // Les mois commencent à 0 en JavaScript
+			var day = ('0' + now.getDate()).slice(-2);
+			var hours = ('0' + now.getHours()).slice(-2);
+			var minutes = ('0' + now.getMinutes()).slice(-2);
+			var seconds = ('0' + now.getSeconds()).slice(-2);
+
+			return '' + year + month + day + hours + minutes + seconds;
+		}
+		function soumettreTransaction(compteId) {
+			var montant = document.getElementById('montant').value;
+			var commentaire = document.getElementById('commentaire').value;
+			var user = '<?php echo $user; ?>';
+			var mandat = '<?php echo $mandat; ?>';
+			// Déterminer 'debit' en fonction de la longueur de la chaîne PHP
+			var debit = '<?php echo $debit; ?>'.length > 0 ? '<?php echo $debit; ?>' : compteId;
+			var credit = '<?php echo $credit; ?>'.length > 0 ? '<?php echo $credit; ?>' : compteId;
+
+			// Vérification que le montant est bien saisi et est un chiffre
+			if (montant.trim() === '' || isNaN(montant) || !/^\d+(\.\d+)?$/.test(montant)) {
+				alert("Saisir un montant valide.");
+				return; // Arrête l'exécution de la fonction si la validation échoue
+			}
+    
+			// Construire les données à envoyer
+			var data = {
+				'user': user,
+				'mandat': mandat,
+				'date': getFormattedDate(),
+				'montant': montant,
+				'commentaire': commentaire,
+				'debit': debit,
+				'credit': credit
+			};
+			// Envoi des données au serveur via AJAX
+			var url = 'enregistrer.php';
+			fetch(url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data)
+			})
+			.then(response => response.text())
+			.then(result => {
+				console.log(result);
+				const redirectUrl = `etape1.html?user=${encodeURIComponent(data.user)}&mandat=${encodeURIComponent(data.mandat)}&record=ok`;
+				window.location.href = redirectUrl;
+			})
+			.catch(error => {
+				console.error('Erreur:', error);
+			});
+		}
+	</script>
+</body>
+</html>

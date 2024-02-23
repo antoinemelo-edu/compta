@@ -1,0 +1,7 @@
+Traitille-titre: Bilan en CHF'000
+Vide-titre: 0
+Actifs: 1
+Passifs: 2
+Traitille-diff: -----------
+Passifs - Actifs: 1-2
+Doubletrait-diff: ===========

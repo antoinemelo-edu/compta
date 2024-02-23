@@ -1,0 +1,4 @@
+pip install beautifulsoup4
+pip install requests
+
+Mac maison: http://192.168.1.108:8010
